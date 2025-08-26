@@ -111,3 +111,7 @@ python chaos-engineering/framework/runner.py --experiment=cpu-stress --duration=
 ## License
 
 MIT License - see LICENSE file for details
+
+---
+
+**Created by [olaitanojo](https://github.com/olaitanojo)**
