@@ -295,3 +295,7 @@ This project demonstrates:
 ---
 
 *This project showcases modern CI/CD practices with SRE principles, demonstrating skills in automation, reliability engineering, and deployment safety - core competencies for DevOps and SRE roles.*
+
+---
+
+**Created by [olaitanojo](https://github.com/olaitanojo)**
