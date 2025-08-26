@@ -249,3 +249,7 @@ filter {
 ## License
 
 MIT License - see LICENSE file for details
+
+---
+
+**Created by [olaitanojo](https://github.com/olaitanojo)**
