@@ -328,3 +328,7 @@ curl -X GET "http://localhost:8000/api/recommendations?type=cost&savings_target=
 ## License
 
 MIT License - see LICENSE file for details
+
+---
+
+**Created by [olaitanojo](https://github.com/olaitanojo)**
