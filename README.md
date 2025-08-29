@@ -12,31 +12,153 @@ This portfolio showcases practical SRE implementations across key domains includ
 
 ## 🏗️ Architecture
 
+### System Overview
+```mermaid
+graph TB
+    subgraph "Observability Layer"
+        A[Prometheus Monitoring]
+        B[Grafana Dashboards]
+        C[AlertManager]
+        D[Log Aggregation ELK]
+        E[Distributed Tracing]
+    end
+    
+    subgraph "Infrastructure Layer"
+        F[Terraform IaC]
+        G[Multi-Cloud Deployment]
+        H[Container Orchestration]
+        I[Service Mesh]
+        J[Security Controls]
+    end
+    
+    subgraph "Reliability Layer"
+        K[Incident Response Toolkit]
+        L[Chaos Engineering]
+        M[SLO Management]
+        N[Error Budget Tracking]
+        O[Runbook Automation]
+    end
+    
+    subgraph "Delivery Layer"
+        P[CI/CD Pipelines]
+        Q[Deployment Strategies]
+        R[Quality Gates]
+        S[Rollback Mechanisms]
+        T[Performance Testing]
+    end
+    
+    subgraph "Intelligence Layer"
+        U[Capacity Planning]
+        V[ML Forecasting]
+        W[Anomaly Detection]
+        X[Cost Optimization]
+        Y[Trend Analysis]
+    end
+    
+    A --> C
+    B --> A
+    C --> K
+    D --> W
+    F --> G
+    G --> H
+    K --> O
+    L --> M
+    P --> Q
+    Q --> R
+    U --> V
+    V --> X
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                    SRE Portfolio Architecture                    │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐ │
-│  │   Monitoring    │  │   Incident      │  │   Infrastructure │ │
-│  │   & Alerting    │  │   Response      │  │   as Code       │ │
-│  │                 │  │                 │  │                 │ │
-│  │ • Prometheus    │  │ • Commander     │  │ • Terraform     │ │
-│  │ • Grafana       │  │   Dashboard     │  │ • AWS/GCP/Azure │ │
-│  │ • AlertManager  │  │ • Runbooks      │  │ • Best Practices│ │
-│  │ • Custom Rules  │  │ • Chaos Eng.    │  │ • Multi-Cloud   │ │
-│  └─────────────────┘  └─────────────────┘  └─────────────────┘ │
-│                                                                 │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐ │
-│  │   CI/CD         │  │   Log           │  │   Capacity      │ │
-│  │   Pipeline      │  │   Aggregation   │  │   Planning      │ │
-│  │                 │  │                 │  │                 │ │
-│  │ • Jenkins/GHA   │  │ • ELK Stack     │  │ • ML Forecasting│ │
-│  │ • Testing       │  │ • Log Analysis  │  │ • Cost Opt.     │ │
-│  │ • Blue/Green    │  │ • Real-time     │  │ • Right-sizing  │ │
-│  │ • Canary Deploy │  │   Alerting      │  │ • Auto-scaling  │ │
-│  └─────────────────┘  └─────────────────┘  └─────────────────┘ │
-└─────────────────────────────────────────────────────────────────┘
+
+### SRE Workflow Architecture
+```mermaid
+flowchart LR
+    subgraph "Development"
+        A1[Code Changes]
+        A2[Testing]
+        A3[Quality Gates]
+    end
+    
+    subgraph "Deployment"
+        B1[CI/CD Pipeline]
+        B2[Blue-Green Deploy]
+        B3[Canary Release]
+        B4[Rollback Strategy]
+    end
+    
+    subgraph "Operations"
+        C1[Monitoring]
+        C2[Alerting]
+        C3[Incident Response]
+        C4[Capacity Planning]
+    end
+    
+    subgraph "Reliability"
+        D1[SLO Tracking]
+        D2[Error Budgets]
+        D3[Post-Mortems]
+        D4[Chaos Engineering]
+    end
+    
+    A1 --> A2
+    A2 --> A3
+    A3 --> B1
+    B1 --> B2
+    B2 --> B3
+    B3 --> C1
+    C1 --> C2
+    C2 --> C3
+    C4 --> D1
+    D1 --> D2
+    D3 --> D4
+    B4 -.-> B2
+    C3 -.-> B4
+```
+
+### Component Interaction Diagram
+```mermaid
+graph TD
+    subgraph "Data Sources"
+        DS1[Applications]
+        DS2[Infrastructure]
+        DS3[Cloud Services]
+        DS4[User Traffic]
+    end
+    
+    subgraph "Collection & Processing"
+        CP1[Metrics Collection]
+        CP2[Log Aggregation]
+        CP3[Trace Collection]
+        CP4[Event Processing]
+    end
+    
+    subgraph "Storage & Analysis"
+        SA1[Time Series DB]
+        SA2[Search Engine]
+        SA3[Data Warehouse]
+        SA4[ML Pipeline]
+    end
+    
+    subgraph "Presentation & Action"
+        PA1[Dashboards]
+        PA2[Alerts]
+        PA3[Reports]
+        PA4[Automation]
+    end
+    
+    DS1 --> CP1
+    DS2 --> CP2
+    DS3 --> CP3
+    DS4 --> CP4
+    
+    CP1 --> SA1
+    CP2 --> SA2
+    CP3 --> SA3
+    CP4 --> SA4
+    
+    SA1 --> PA1
+    SA2 --> PA2
+    SA3 --> PA3
+    SA4 --> PA4
 ```
 
 ## 📁 Projects
