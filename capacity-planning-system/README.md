@@ -1,5 +1,16 @@
 # Capacity Planning & Resource Optimization System
 
+[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688.svg)](https://fastapi.tiangolo.com/)
+[![React](https://img.shields.io/badge/React-18+-61DAFB.svg)](https://reactjs.org/)
+[![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED.svg)](https://docker.com)
+[![ML](https://img.shields.io/badge/ML-TensorFlow%20%7C%20Prophet-FF6F00.svg)](https://tensorflow.org)
+[![AWS](https://img.shields.io/badge/AWS-CloudWatch%20%7C%20Cost%20Explorer-FF9900.svg)](https://aws.amazon.com)
+[![GCP](https://img.shields.io/badge/GCP-Cloud%20Monitoring-4285F4.svg)](https://cloud.google.com)
+[![Azure](https://img.shields.io/badge/Azure-Monitor-0078D4.svg)](https://azure.microsoft.com)
+[![InfluxDB](https://img.shields.io/badge/InfluxDB-Time%20Series-22ADF6.svg)](https://influxdata.com)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 An intelligent capacity planning system that monitors resource usage, forecasts future needs, and provides optimization recommendations for cloud infrastructure and applications.
 
 ## Features
@@ -34,24 +45,208 @@ An intelligent capacity planning system that monitors resource usage, forecasts 
 
 ## Architecture
 
+### System Architecture Overview
+
+```mermaid
+graph TB
+    subgraph "Data Sources Layer"
+        CloudAPIs["☁️ Cloud APIs<br/>AWS • GCP • Azure"]
+        Monitoring["📊 Monitoring<br/>Prometheus • Grafana"]
+        BillingAPIs["💰 Billing APIs<br/>Cost Explorer • Cloud Billing"]
+        CustomApps["🔧 Custom Applications<br/>Business Metrics"]
+    end
+
+    subgraph "Data Collection Layer"
+        MetricsCollector["📈 Metrics Collectors<br/>CloudWatch • Stackdriver"]
+        CostCollector["💸 Cost Collectors<br/>Usage & Billing Data"]
+        LogParser["📝 Log Parsers<br/>Application Logs"]
+    end
+
+    subgraph "Processing Layer"
+        DataValidator["✅ Data Validation<br/>Quality Checks"]
+        Aggregator["🔄 Data Aggregation<br/>Time Series Processing"]
+        Enricher["🎯 Data Enrichment<br/>Context & Metadata"]
+    end
+
+    subgraph "Storage Layer"
+        InfluxDB[("📊 InfluxDB<br/>Time Series Data")]
+        PostgreSQL[("🗄️ PostgreSQL<br/>Metadata & Config")]
+        Redis[("⚡ Redis<br/>Cache Layer")]
+        DataLake[("🏗️ Data Lake<br/>S3 • GCS Historical")]
+    end
+
+    subgraph "Analytics Engine"
+        MLModels["🤖 ML Forecasting<br/>Prophet • ARIMA • Neural Networks"]
+        OptimizationEngine["⚙️ Optimization Engine<br/>Cost & Resource Optimization"]
+        AnomalyDetection["🚨 Anomaly Detection<br/>Pattern Recognition"]
+        TrendAnalysis["📈 Trend Analysis<br/>Statistical Analysis"]
+    end
+
+    subgraph "Application Layer"
+        RestAPI["🔗 REST API<br/>FastAPI Backend"]
+        WebDashboard["💻 Web Dashboard<br/>React Frontend"]
+        CLITools["⌨️ CLI Tools<br/>Automation Scripts"]
+        Webhooks["🔄 Webhook Integration<br/>Real-time Notifications"]
+    end
+
+    %% Data Flow
+    CloudAPIs --> MetricsCollector
+    Monitoring --> MetricsCollector
+    BillingAPIs --> CostCollector
+    CustomApps --> LogParser
+
+    MetricsCollector --> DataValidator
+    CostCollector --> DataValidator
+    LogParser --> DataValidator
+
+    DataValidator --> Aggregator
+    Aggregator --> Enricher
+
+    Enricher --> InfluxDB
+    Enricher --> PostgreSQL
+    Enricher --> Redis
+    InfluxDB --> DataLake
+
+    InfluxDB --> MLModels
+    PostgreSQL --> OptimizationEngine
+    Redis --> AnomalyDetection
+    DataLake --> TrendAnalysis
+
+    MLModels --> RestAPI
+    OptimizationEngine --> RestAPI
+    AnomalyDetection --> RestAPI
+    TrendAnalysis --> RestAPI
+
+    RestAPI --> WebDashboard
+    RestAPI --> CLITools
+    RestAPI --> Webhooks
+
+    style CloudAPIs fill:#e1f5fe
+    style MLModels fill:#f3e5f5
+    style RestAPI fill:#e8f5e8
+    style InfluxDB fill:#fff3e0
 ```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Data Sources  │───▶│   Collection    │───▶│   Processing    │
-│                 │    │                 │    │                 │
-│ • Cloud APIs    │    │ • Metrics       │    │ • Data          │
-│ • Monitoring    │    │   Collectors    │    │   Validation    │
-│ • Billing APIs  │    │ • Cost APIs     │    │ • Aggregation   │
-│ • Custom Apps   │    │ • Log Parsing   │    │ • Enrichment    │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                                                       │
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Reporting     │◀───│   Analytics     │◀───│   Storage       │
-│                 │    │                 │    │                 │
-│ • Dashboards    │    │ • ML Models     │    │ • Time Series   │
-│ • Alerts        │    │ • Forecasting   │    │ • Metadata      │ 
-│ • Recommendations│    │ • Optimization  │    │ • Cost Data     │
-│ • Export        │    │ • Trending      │    │ • Configs       │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
+
+### ML Forecasting Pipeline
+
+```mermaid
+sequenceDiagram
+    participant DS as Data Sources
+    participant DC as Data Collector
+    participant PP as Preprocessing
+    participant ML as ML Models
+    participant Forecast as Forecasting Engine
+    participant API as REST API
+    participant UI as Dashboard
+
+    DS->>DC: Stream metrics data
+    DC->>PP: Raw time series data
+    PP->>PP: Clean & validate data
+    PP->>PP: Feature engineering
+    PP->>ML: Processed training data
+    
+    ML->>ML: Train Prophet model
+    ML->>ML: Train ARIMA model
+    ML->>ML: Train Neural Network
+    
+    ML->>Forecast: Model ensemble
+    Forecast->>Forecast: Generate predictions
+    Forecast->>Forecast: Calculate confidence intervals
+    Forecast->>Forecast: Validate forecasts
+    
+    Forecast->>API: Forecast results
+    API->>UI: JSON response
+    UI->>UI: Render visualizations
+    
+    Note over ML,Forecast: Models retrained daily<br/>with new data
+    Note over Forecast,API: Forecasts cached<br/>for 4 hours
+```
+
+### Cost Optimization Workflow
+
+```mermaid
+flowchart TD
+    A["💰 Cost Data Ingestion"] --> B["📊 Resource Utilization Analysis"]
+    B --> C{"🔍 Utilization < 50%?"}
+    
+    C -->|Yes| D["📉 Right-sizing Recommendation"]
+    C -->|No| E["📈 Scale-up Analysis"]
+    
+    D --> F["💡 Generate Optimization Report"]
+    E --> G{"🚀 Growth Rate > 20%?"}
+    
+    G -->|Yes| H["📈 Capacity Expansion Recommendation"]
+    G -->|No| I["⚡ Auto-scaling Optimization"]
+    
+    H --> F
+    I --> F
+    
+    F --> J["📋 ROI Calculation"]
+    J --> K["📬 Notification & Alerts"]
+    K --> L["🔄 Implementation Tracking"]
+    
+    L --> M{"✅ Implemented?"}
+    M -->|Yes| N["📈 Measure Impact"]
+    M -->|No| O["⏰ Follow-up Reminder"]
+    
+    N --> P["📊 Update Model Accuracy"]
+    O --> K
+    P --> A
+    
+    style A fill:#e3f2fd
+    style F fill:#f3e5f5
+    style N fill:#e8f5e8
+```
+
+### Container Architecture (C4 Model)
+
+```mermaid
+C4Container
+    title Capacity Planning System - Container Diagram
+    
+    Person(user, "SRE/DevOps Engineer", "Monitors capacity and optimizes resources")
+    Person(exec, "Executive", "Reviews cost reports and ROI")
+    
+    System_Boundary(cp, "Capacity Planning System") {
+        Container(web, "Web Dashboard", "React, TypeScript", "Interactive capacity planning interface")
+        Container(api, "REST API", "FastAPI, Python", "Core business logic and data access")
+        Container(collector, "Data Collector", "Go, Python", "Collects metrics from cloud providers")
+        Container(ml, "ML Engine", "Python, TensorFlow", "Forecasting and optimization models")
+        Container(scheduler, "Job Scheduler", "Celery, Redis", "Handles background processing")
+        
+        ContainerDb(influx, "InfluxDB", "Time Series DB", "Stores metrics and forecasting data")
+        ContainerDb(postgres, "PostgreSQL", "Relational DB", "Stores configuration and metadata")
+        ContainerDb(redis, "Redis", "In-Memory DB", "Caching and job queue")
+        ContainerDb(s3, "Data Lake", "S3/GCS", "Long-term historical data storage")
+    }
+    
+    System_Ext(aws, "AWS Services", "CloudWatch, Cost Explorer, EC2")
+    System_Ext(gcp, "GCP Services", "Cloud Monitoring, Billing API")
+    System_Ext(azure, "Azure Services", "Azure Monitor, Cost Management")
+    System_Ext(prom, "Prometheus", "Metrics collection system")
+    System_Ext(grafana, "Grafana", "Monitoring dashboards")
+    
+    Rel(user, web, "Uses", "HTTPS")
+    Rel(exec, web, "Reviews", "HTTPS")
+    Rel(web, api, "API calls", "JSON/REST")
+    Rel(api, influx, "Queries", "InfluxQL")
+    Rel(api, postgres, "Reads/Writes", "SQL")
+    Rel(api, redis, "Cache operations", "Redis Protocol")
+    Rel(api, scheduler, "Triggers jobs", "Celery")
+    
+    Rel(collector, aws, "Collects metrics", "AWS API")
+    Rel(collector, gcp, "Collects metrics", "GCP API")
+    Rel(collector, azure, "Collects metrics", "Azure API")
+    Rel(collector, prom, "Scrapes metrics", "HTTP")
+    Rel(collector, influx, "Stores data", "Line Protocol")
+    
+    Rel(ml, influx, "Training data", "InfluxQL")
+    Rel(ml, s3, "Model artifacts", "S3 API")
+    Rel(scheduler, ml, "Triggers training", "Python")
+    
+    Rel(api, grafana, "Webhook alerts", "HTTP")
+    
+    UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
 ```
 
 ## Components
