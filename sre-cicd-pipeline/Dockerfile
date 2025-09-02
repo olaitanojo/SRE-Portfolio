@@ -30,8 +30,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app.py .
 COPY scripts/ scripts/
 
-# Create log directory
-RUN mkdir -p /var/log && chown -R appuser:appuser /var/log
+# Create log directory and app-specific directories
+RUN mkdir -p /app/logs /var/log && chown -R appuser:appuser /app/logs /var/log
 
 # Switch to non-root user
 USER appuser

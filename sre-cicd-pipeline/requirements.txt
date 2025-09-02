@@ -1,3 +1,16 @@
+# Core Application Dependencies
 Flask==3.0.0
 prometheus-client==0.19.0
 gunicorn==21.2.0
+
+# Testing Dependencies
+pytest==7.4.3
+pytest-cov==4.1.0
+requests==2.31.0
+
+# Development Tools (for CI/CD pipeline)
+black==23.12.0
+flake8==6.1.0
+mypy==1.7.1
+bandit==1.7.5
+# Note: safety removed due to packaging dependency conflict
