@@ -1,0 +1,52 @@
+# Version control
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+.pytest_cache
+.coverage
+htmlcov/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local development
+logs/
+*.log
+
+# Test files
+test-results.xml
+bandit-report.json
+safety-report.json
+
+# Documentation
+README.md
+*.md
+
+# CI/CD
+.github/
+
+# Deployment configs (not needed in container)
+aws-deployment.yml
+azure-deployment.json
+deploy-*.ps1
+simple-deployment.yml
+DEPLOYMENT-SETUP.md
+*.pem
