@@ -84,7 +84,7 @@ jobs:
         pytest -v --cov=app --cov-report=xml --cov-report=html --junitxml=test-results.xml
         
     - name: Upload Test Results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: test-results
@@ -179,7 +179,7 @@ jobs:
         output: trivy-results.sarif
 
     - name: Upload Security Results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: security-results
         path: |
@@ -215,7 +215,7 @@ jobs:
         output: trivy-config-results.sarif
 
     - name: Upload Infrastructure Results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: infrastructure-results
         path: trivy-config-results.sarif
@@ -383,7 +383,7 @@ jobs:
         echo "- **Timestamp:** $(date -u)" >> deployment-report.md
 
     - name: Upload Deployment Report
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: deployment-report
         path: deployment-report.md
