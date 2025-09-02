@@ -1,19 +1,15 @@
-# 🚀 SRE CI/CD Pipeline - Production-Ready Deployment Automation
+# SRE CI/CD Pipeline
 
-[![CI/CD Pipeline](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-blue?logo=github-actions)](https://github.com/olaitanojo/SRE-Portfolio/actions)
-[![Docker](https://img.shields.io/badge/Docker-Production%20Ready-blue?logo=docker)](https://hub.docker.com/r/olaitanojo/sre-cicd-demo)
+[![CI/CD Pipeline](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-blue?logo=github-actions)](https://github.com/YOUR_USERNAME/sre-cicd-pipeline/actions)
+[![Docker](https://img.shields.io/badge/Docker-Production%20Ready-blue?logo=docker)](https://hub.docker.com/r/YOUR_USERNAME/sre-cicd-demo)
 [![Python](https://img.shields.io/badge/Python-3.11-green?logo=python)](https://python.org)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![SRE](https://img.shields.io/badge/SRE-Best%20Practices-orange)](https://sre.google/)
-[![Monitoring](https://img.shields.io/badge/Monitoring-Prometheus%20%7C%20Grafana-red)](https://prometheus.io/)
 
-> 🚀 **Status**: Production Ready | 🧪 **Tests**: 11/11 Passing | 📊 **Coverage**: 89% | 🔒 **Security**: Scanned | ⚡ **Deployment**: Multi-Strategy
+> 🚀 **Status**: Production Ready | 🧪 **Tests**: 11/11 Passing | 📊 **Coverage**: 89% | 🔒 **Security**: Scanned
 
-## 📖 Overview
-
-This **SRE CI/CD Pipeline** is a cornerstone component of the comprehensive [SRE Portfolio](../README.md), demonstrating enterprise-grade deployment automation with reliability engineering principles. It showcases automated testing, security scanning, multiple deployment strategies, chaos engineering, and comprehensive monitoring - all essential for maintaining reliable services at scale.
-
-**Part of the Complete SRE Portfolio**: This pipeline integrates with other portfolio components including [Prometheus Monitoring Stack](../prometheus-monitoring-stack/), [Incident Response Toolkit](../incident-response-toolkit/), and [Infrastructure Automation](../terraform-aws-infrastructure/).
+## Overview
+This project demonstrates production-ready CI/CD practices with reliability engineering principles. It showcases automated testing, security scanning, multiple deployment strategies, and comprehensive monitoring - all essential for maintaining reliable services at scale.
 
 ## 🎯 SRE Concepts Demonstrated
 
@@ -103,7 +99,7 @@ This **SRE CI/CD Pipeline** is a cornerstone component of the comprehensive [SRE
 ### Repository Setup
 ```bash
 # Clone the repository
-git clone https://github.com/olaitanojo/SRE-Portfolio.git
+git clone <repository-url>
 cd sre-cicd-pipeline
 
 # Create development environment
@@ -138,16 +134,13 @@ python app.py
 ## 📋 GitHub Actions Setup
 
 ### Required Secrets
-Configure these in GitHub repository settings:
-
-- `DOCKER_USERNAME` - Docker Hub username
-- `DOCKER_PASSWORD` - Docker Hub password/token
-- `AWS_ACCESS_KEY_ID` - AWS access key
-- `AWS_SECRET_ACCESS_KEY` - AWS secret key
-- `AWS_REGION` - AWS region (e.g., us-west-2)
-- `SLACK_WEBHOOK_URL` - Slack webhook for notifications
-- `NOTIFICATION_EMAIL` - Email for alerts
-- `SSH_PRIVATE_KEY` - SSH private key for deployments
+```bash
+# Configure in GitHub repository settings
+SLACK_WEBHOOK_URL          # For deployment notifications
+SONAR_TOKEN               # For SonarQube integration (optional)
+AWS_ACCESS_KEY_ID         # For AWS deployments
+AWS_SECRET_ACCESS_KEY     # For AWS deployments
+```
 
 ### Workflow Triggers
 - **Push to main**: Production deployment
@@ -173,6 +166,15 @@ Configure these in GitHub repository settings:
 ```bash
 # Check current SLO compliance
 ./scripts/check-slos.sh production
+
+# View deployment metrics
+aws cloudwatch get-metric-statistics \
+  --namespace "SRE/Deployments" \
+  --metric-name DeploymentSuccess \
+  --start-time $(date -u -d '24 hours ago' +%Y-%m-%dT%H:%M:%S) \
+  --end-time $(date -u +%Y-%m-%dT%H:%M:%S) \
+  --period 3600 \
+  --statistics Sum
 ```
 
 ## 📈 Monitoring and Observability
@@ -235,6 +237,30 @@ Configure these in GitHub repository settings:
 - Encrypted data transmission
 - Audit logging and compliance
 
+## 🔄 Disaster Recovery
+
+### Automated Recovery
+- Health check failures trigger auto-scaling
+- Load balancer automatically routes around failed instances
+- Database automated backups with point-in-time recovery
+- Infrastructure recreation via Terraform
+
+### Manual Recovery
+```bash
+# Emergency rollback
+./scripts/rollback.sh
+
+# Scale up for traffic surge
+aws autoscaling set-desired-capacity \
+  --auto-scaling-group-name sre-demo-asg \
+  --desired-capacity 10
+
+# Database snapshot restore
+aws rds restore-db-instance-from-db-snapshot \
+  --db-instance-identifier restored-instance \
+  --db-snapshot-identifier snapshot-id
+```
+
 ## 📚 Learning Outcomes
 
 This project demonstrates:
@@ -277,5 +303,7 @@ This project demonstrates:
 ---
 
 *This project showcases modern CI/CD practices with SRE principles, demonstrating skills in automation, reliability engineering, and deployment safety - core competencies for DevOps and SRE roles.*
+
+---
 
 **Created by [olaitanojo](https://github.com/olaitanojo)**

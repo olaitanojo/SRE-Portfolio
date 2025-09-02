@@ -6,28 +6,6 @@ __pycache__/
 # C extensions
 *.so
 
-# Environment files
-.env
-*.env
-.env.local
-.env.production
-
-# Logs
-*.log
-logs/
-
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# Node modules
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
 # Distribution / packaging
 .Python
 build/
@@ -42,8 +20,6 @@ parts/
 sdist/
 var/
 wheels/
-pip-wheel-metadata/
-share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -74,6 +50,7 @@ coverage.xml
 *.pot
 
 # Django stuff:
+*.log
 local_settings.py
 db.sqlite3
 
@@ -102,7 +79,8 @@ celerybeat-schedule
 # SageMath parsed files
 *.sage.py
 
-# Virtual environments
+# Environments
+.env
 .venv
 env/
 venv/
@@ -123,24 +101,22 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-# IDE files
+# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
 
-# OS generated files
+# OS
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
 
 # Application logs
 logs/
+*.log
+
+# Docker volumes
+volumes/
 
 # Test reports
 test-results.xml
@@ -168,29 +144,3 @@ alertmanager-data/
 *.tfstate
 *.tfstate.*
 .terraform/
-.terraform.lock.hcl
-terraform.tfvars
-*.tfplan
-
-# Docker
-.dockerignore
-
-# Kubernetes secrets
-*secret*.yaml
-*secret*.yml
-
-# Temporary files
-tmp/
-temp/
-*.tmp
-
-# Cloud provider credentials
-*credentials*
-*keys*
-service-account*.json
-gcp-*.json
-aws-credentials*
-
-# Data directories
-data/
-volumes/
