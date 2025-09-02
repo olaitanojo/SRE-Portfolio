@@ -118,12 +118,12 @@ if ($errorCount -eq 0) {
 }
 
 Write-Host ""
-Write-Host "🏗️  Your SRE CI/CD Pipeline includes:" -ForegroundColor Magenta
-Write-Host "   - Flask app with Prometheus metrics"
-Write-Host "   - 11 comprehensive tests (89 percent coverage)"
-Write-Host "   - Production-ready Docker container"
-Write-Host "   - GitHub Actions CI/CD workflow"
-Write-Host "   - Rolling, Blue-Green and Canary deployments"
-Write-Host "   - SLO monitoring and alerting"
-Write-Host "   - Security scanning and quality gates"
-Write-Host "   - Observability stack (Prometheus, Grafana)"
+Write-Host "Your SRE CI/CD Pipeline includes:" -ForegroundColor Magenta
+Write-Host "  * Flask app with Prometheus metrics"
+Write-Host "  * 11 comprehensive tests with 89% coverage"
+Write-Host "  * Production-ready Docker container"
+Write-Host "  * GitHub Actions CI/CD workflow"
+Write-Host "  * Rolling, Blue-Green and Canary deployments"
+Write-Host "  * SLO monitoring and alerting"
+Write-Host "  * Security scanning and quality gates"
+Write-Host "  * Observability stack with Prometheus and Grafana"
